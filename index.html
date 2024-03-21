@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        gap: 5px;
+    }
+    .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        font-size: 2em;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="board" onclick="cellClicked(event)">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+</div>
+
+<script>
+    let humanPlayer = "X";
+    let computerPlayer = "O";
+    let currentPlayer = humanPlayer;
+    let cells = document.querySelectorAll('.cell');
+
+    function cellClicked(event) {
+        let cell = event.target;
+        if (cell.textContent === '') {
+            cell.textContent = humanPlayer;
+            if (checkWinner(humanPlayer)) {
+                alert("Congarts! This is the starting of wins from your Birthday!");
+                window.location.href = "hbd.html";
+                resetBoard();
+            } else if (checkDraw()) {
+                alert("You Won! You're always great! Be powerful and happy!");
+                window.location.href = "hbd.html";
+                resetBoard();
+            } else {
+                currentPlayer = computerPlayer;
+                computerMove();
+            }
+        }
+    }
+
+    function computerMove() {
+        let availableMoves = [];
+        cells.forEach((cell, index) => {
+            if (cell.textContent === '') {
+                availableMoves.push(index);
+            }
+        });
+        let computerMoveIndex = getBestMove(availableMoves);
+        cells[computerMoveIndex].textContent = computerPlayer;
+        if (checkWinner(computerPlayer)) {
+            alert("You Won! Mere hote hue tuje harne thore dunga!");
+            window.location.href = "hbd.html";
+            resetBoard();
+        } else if (checkDraw()) {
+            alert("You Won! You're always great! Be powerful and happy!");
+            window.location.href = "hbd.html";
+            resetBoard();
+        } else {
+            currentPlayer = humanPlayer;
+        }
+    }
+
+    function getBestMove(availableMoves) {
+        // Simple random move for demonstration purposes
+        return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+    }
+
+    function checkWinner(player) {
+        const winningCombos = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+            [0, 4, 8], [2, 4, 6]             // diagonals
+        ];
+        return winningCombos.some(combo => {
+            return combo.every(index => {
+                return cells[index].textContent === player;
+            });
+        });
+    }
+
+    function checkDraw() {
+        return [...cells].every(cell => cell.textContent !== '');
+    }
+
+    function resetBoard() {
+        cells.forEach(cell => {
+            cell.textContent = '';
+        });
+        currentPlayer = humanPlayer;
+    }
+</script>
+
+</body>
+</html>

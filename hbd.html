@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<title>Fireworks</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="black-background"></div>
+
+<div id="card" class="card hidden">
+    <h2>Happy Birthday Naina!</h2>
+    <img src="images/432712622_708089988143095_8329751873189212089_n.jpg" alt="image">
+    <p>Happy Birthday to my incredible little sister, who has not only been a sister but also a true friend throughout my life. Your laughter fills every room with joy, and your kindness knows no bounds. As you celebrate another year, I want you to know how much you mean to me. You bring light and love into my life, and I am grateful for every moment we share together. May your day be filled with laughter, love, and all the happiness in the world. Here's to many more years of adventures and memories together. I love you more than words can express. Happy Birthday, my dear sister!" 🎉🎂🎈</p>
+</div>
+
+<div class="fireworks-container"></div>
+
+<audio controls style=" display:none;" loop   id="music"  >
+    <source  src="Audio/Happy Birthday - Full Video Goodbye Amitabh Bachchan, Rashmika M Abhijeet S, Amit T, Swanand K.mp3">
+</audio>
+    <script>
+      window.addEventListener("click",play);
+        function play() { 
+            document.getElementById("music").play();
+      }
+</script> 
+<!-- <script>
+    Swal.fire({
+        title: "A Message for you!!",
+        html: "<p>I know that I'm a bit late, but with college stress and all, things can get overwhelming. However, I want you to know that I wish for your happiness always. May you find everything you desire, and may all your dreams come true.</p><p>I want you to know that I'm here to support you through thick and thin. No matter what you're going through, I've got your back. You're not alone in this journey, my friend. Together, we'll overcome any obstacles that come our way.</p><p>Keep your spirits high, and remember that I'm always here for you. You're not just a friend; you're family. I'm with you, dude!</p>",
+    });
+</script> -->
+
+
+<script src="script.js"></script>
+</body>
+</html>
